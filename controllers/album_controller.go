@@ -14,7 +14,9 @@ func GetAllAlbums(c *gin.Context) {
 func PostAlbums(c *gin.Context) {
 	var newAlbum models.Album
 
+	//BindJSON: es una función que traduce el JSON a una estructura de Go.
 	if err := c.BindJSON(&newAlbum); err != nil {
+		c.JSON(400, gin.H{"error": "JSON inválido"})
 		return
 	}
 
